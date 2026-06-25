@@ -1,4 +1,10 @@
-# KGFM — ULTRA · MOTIF · TRIX
+# Half a Link can Be Enough to Predict a Whole Link: Understanding Generalization in Knowledge Graph Foundation Models
+
+Official implementation of `Half a Link can Be Enough to Predict a Whole Link: Understanding Generalization in Knowledge Graph Foundation Models`
+
+If you use it, please cite:
+
+`Gregucci, C., Theeb, O., Hernandez, D., Vergari, A. and Staab, S., 2026. Half a Link can Be Enough to Predict a Whole Link: Understanding Generalization in Knowledge Graph Foundation Models. arXiv preprint arXiv:2606.18001.`
 
 A single deduplicated package hosting three knowledge-graph foundation models —
 **ULTRA**, **MOTIF**, and **TRIX** — behind one set of entry-point scripts, plus a
