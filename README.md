@@ -29,9 +29,15 @@ Upstream sources: ULTRA + MOTIF from `HxyScotthuang/MOTIF`; TRIX from
 `trix_noiter.md`). ULTRA additionally supports a random-frozen-backbone training
 mode (see `ultra_randfrozen.md`).
 
-Pretrained checkpoints in `ckpts/`: `ultra_3g.pth`, `motif_3g.pth`,
-`trix_entity_prediction.pth`, `trix_relation_prediction.pth`, `trix_noiter_3g.pth`,
-`ultra_3g_randfrozen.pth`.
+Pretrained checkpoints in `ckpts/`, one folder per model:
+`ckpts/ultra/` (`ultra_3g.pth`, `ultra_3g_randfrozen.pth`), `ckpts/motif/`
+(`motif_3g.pth`), `ckpts/trix/` (`trix_entity_prediction.pth`,
+`trix_relation_prediction.pth`, `trix_noiter_3g.pth`).
+
+Extra pretraining-seed runs sit next to the released checkpoints:
+`ultra/ultra_3g_seed{2025,2026,4000,8000}.pth`,
+`trix/trix_entity_prediction_seed{2025,2026,4000,8000}.pth` (each with the
+released checkpoint = 5 seeds), and `motif/motif_3g_seed{1024,2025}.pth`.
 
 ## Environment
 
@@ -49,13 +55,13 @@ runs reuse the cached build.
 ```bash
 # Single-dataset entity-side eval (Ultra | MOTIF | TRIXEntity | TRIXNoIter)
 python script/run.py -c config/motif/transductive/MOTIF_inference.yaml \
-    --gpus '[0]' --ckpt ckpts/motif_3g.pth --dataset FB15k237
+    --gpus '[0]' --ckpt ckpts/motif/motif_3g.pth --dataset FB15k237
 
 # Multi-dataset entity-side eval, optionally with visibility splits
 python script/run_many.py \
     -c config/motif/transductive/MOTIF_inference.yaml \
     -d FB15k237,WN18RR \
-    --gpus '[0]' --ckpt ckpts/motif_3g.pth \
+    --gpus '[0]' --ckpt ckpts/motif/motif_3g.pth \
     --visibility-splits --vis-csv runs/motif_visibility.csv \
     --test-only
 
@@ -147,7 +153,7 @@ pipeline (`script/precompute_motif_relation_emb.py`,
 kgfm/                 package (models/, layers, datasets, tasks, util, visibility, rspmm/)
 script/               entry points
 config/               per-model YAML (ultra/ motif/ trix/ trix_noiter/)
-ckpts/                pretrained checkpoints
+ckpts/                pretrained checkpoints (ultra/ motif/ trix/)
 kg-datasets/          cached preprocessed datasets (kg-datasets/<name>/processed/)
 runs/                 per-run CSV output
 ```

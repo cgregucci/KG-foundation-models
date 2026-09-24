@@ -40,7 +40,7 @@ object (~70 GB on AristoV4).
 
 ```bash
 python script/precompute_motif_relation_emb.py \
-    --dataset <Name> --ckpt ckpts/motif_3g.pth \
+    --dataset <Name> --ckpt ckpts/motif/motif_3g.pth \
     --hg-cache <name>_test_rh.pt \
     --shard --shard-cache <name>_shards.pt --arity3-subshards K \
     --output <name>_rel_emb.pt
@@ -67,7 +67,7 @@ saved as a `.pt` blob (`{"relation_embeddings", "num_relations", "hidden_dim",
 
 ```bash
 python script/run_many.py -c config/motif/transductive/MOTIF_inference.yaml \
-    -d <Name> --gpus '[0]' --ckpt ckpts/motif_3g.pth \
+    -d <Name> --gpus '[0]' --ckpt ckpts/motif/motif_3g.pth \
     --test-only --rel-emb-cache <name>_rel_emb.pt
 ```
 

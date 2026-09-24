@@ -34,7 +34,7 @@ relation embeddings) stay at their random init for the entire run.
 
 PyTorch's `nn.LayerNorm` is initialized to gain `1.0` and bias `0.0`. After any
 gradient update those drift. Comparing the same tensor in the fully-trained
-`ckpts/ultra_3g.pth` vs. the random-frozen ckpt shows the diagnostic cleanly:
+`ckpts/ultra/ultra_3g.pth` vs. the random-frozen ckpt shows the diagnostic cleanly:
 
 | param                                          | `ultra_3g.pth` (trained) | `ultra_3g_randfrozen.pth` |
 |------------------------------------------------|--------------------------|---------------------------|
@@ -75,11 +75,11 @@ model reaches — about 63 % of the fully trained ULTRA.
 ## How to reproduce / verify
 
 ```bash
-# 1. pretrain (already saved as ckpts/ultra_3g_randfrozen.pth)
+# 1. pretrain (already saved as ckpts/ultra/ultra_3g_randfrozen.pth)
 python script/pretrain.py -c config/ultra/transductive/ULTRA_random_frozen_backbone_pretrain_3g.yaml --gpus '[0]'
 
 # 2. eval (transductive / inductive)
-python script/run.py -c config/ultra/transductive/ULTRA_random_frozen_backbone_inference.yaml --gpus '[0]' --ckpt ckpts/ultra_3g_randfrozen.pth --dataset FB15k237
-python script/run.py -c config/ultra/inductive/ULTRA_random_frozen_backbone_inference.yaml    --gpus '[0]' --ckpt ckpts/ultra_3g_randfrozen.pth --dataset FB15k237Inductive --version v1
+python script/run.py -c config/ultra/transductive/ULTRA_random_frozen_backbone_inference.yaml --gpus '[0]' --ckpt ckpts/ultra/ultra_3g_randfrozen.pth --dataset FB15k237
+python script/run.py -c config/ultra/inductive/ULTRA_random_frozen_backbone_inference.yaml    --gpus '[0]' --ckpt ckpts/ultra/ultra_3g_randfrozen.pth --dataset FB15k237Inductive --version v1
 
 ```

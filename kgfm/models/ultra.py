@@ -2,7 +2,7 @@
 
 Module attribute names (`relation_model`, `entity_model`, `layers`, `mlp`, ...)
 are preserved verbatim from upstream so that pretrained checkpoints
-(`ckpts/ultra_3g.pth`, `ckpts/motif_3g.pth`) load unchanged.
+(`ckpts/ultra/ultra_3g.pth`, `ckpts/motif/motif_3g.pth`) load unchanged.
 """
 
 import torch
